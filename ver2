@@ -1,0 +1,78 @@
+grid = [["| ",1," | ",2," | ",3," |"],
+        ["| ",4," | ",5," | ",6," |"],
+        ["| ",7," | ",8," | ",9," |"]]
+
+def drawGrid(grid):
+    #Show the grid to the user.
+    for rows in grid:
+        print("+---+---+---+")
+        #Print each item in the row.
+        for row in rows:
+            print(row, end='')
+        #Formatting
+        print()
+    print("+---+---+---+")
+
+
+drawGrid(grid)
+
+while True:
+    try:
+        move_x = int(input('Xs turn: '))
+        if move_x == int(1):
+            grid[0][1] = "X"
+            drawGrid(grid)
+        elif move_x == int(2):
+            grid[0][3] = "X"
+            drawGrid(grid)
+        elif move_x == int(3):
+            grid[0][5] = "X"
+            drawGrid(grid)
+        elif move_x == int(4):
+            grid[1][1] = "X"
+            drawGrid(grid)
+        elif move_x == int(5):
+            grid[1][3] = "X"
+            drawGrid(grid)
+        elif move_x == int(6):
+            grid[1][5] = "X"
+            drawGrid(grid)
+        elif move_x == int(7):
+            grid[2][1] = "X"
+            drawGrid(grid)
+        elif move_x == int(8):
+            grid[2][3]= "X"
+            drawGrid(grid)
+        elif move_x == int(9):
+            grid[2][5] = "X"
+            drawGrid(grid)
+        move_o = int(input('Os turn: '))
+        if move_o == int(1):
+            grid[0][1] = "O"
+            drawGrid(grid)
+        elif move_o == int(2):
+            grid[0][3] = "O"
+            drawGrid(grid)
+        elif move_o == int(3):
+            grid[0][5] = "O"
+            drawGrid(grid)
+        elif move_o == int(4):
+            grid[1][1] = "O"
+            drawGrid(grid)
+        elif move_o == int(5):
+            grid[1][3] = "O"
+            drawGrid(grid)
+        elif move_o == int(6):
+            grid[1][5] = "O"
+            drawGrid(grid)
+        elif move_o == int(7):
+            grid[2][1] = "O"
+            drawGrid(grid)
+        elif move_o == int(8):
+            grid[2][3]= "O"
+            drawGrid(grid)
+        elif move_o == int(9):
+            grid[2][5] = "O"
+            drawGrid(grid)
+    except ValueError:
+        print("Invalid input")
