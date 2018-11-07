@@ -1,0 +1,49 @@
+grid = [["| ",1," | ",2," | ",3," |"],
+        ["| ",4," | ",5," | ",6," |"],
+        ["| ",7," | ",8," | ",9," |"]]
+
+def drawGrid(grid):
+    for rows in grid:
+        print("+---+---+---+")
+        for row in rows:
+            print(row, end='')
+        print()
+    print("+---+---+---+")
+
+drawGrid(grid)
+
+
+while True:
+    move_x = int(input("X, Your move?"))
+    N = len(grid[0])
+    for i in range(N):
+        for j in range(0, N-i-1):
+            if move_x == grid[0][i]:
+                grid[0][i] = "X"
+                drawGrid(grid)
+            elif move_x == grid[1][i]:
+                grid[1][i] = "X"
+                drawGrid(grid)
+            elif move_x == grid[2][i]:
+                grid[2][i] = "X"
+                drawGrid(grid)
+          
+
+    move_o = int(input("O, Your move?"))
+    N = len(grid[0])
+    for i in range(N):
+        for j in range(0, N-i-1):
+            if move_o == grid[0][i]:
+                grid[0][i] = "O"
+                drawGrid(grid)
+            elif move_o == grid[1][i]:
+                grid[1][i] = "O"
+                drawGrid(grid)
+            elif move_o == grid[2][i]:
+                grid[2][i] = "O"
+                drawGrid(grid)
+    if (grid[0][2] == "X") and (grid[0][4] == "X") and (grid[0][6] == "X"):
+            print("Nyertééél")
+            break
+
+print(grid)
