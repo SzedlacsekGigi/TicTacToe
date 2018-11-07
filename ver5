@@ -1,0 +1,125 @@
+
+import os
+
+import shutil
+
+columns = shutil.get_terminal_size().columns
+
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+
+grid = [["| ",1," | ",2," | ",3," |"],
+        ["| ",4," | ",5," | ",6," |"],
+        ["| ",7," | ",8," | ",9," |"]]
+
+movelist = []
+def drawGrid(grid):
+    print("     _   _      _             _              ".center(columns))
+    print("    | | (_)    | |           | |             ".center(columns))
+    print("    | |_ _  ___| |_ __ _  ___| |_ ___   ___  ".center(columns)) 
+    print("    | __| |/ __| __/ _` |/ __| __/ _ \ / _ \ ".center(columns)) 
+    print("    | |_| | (__| || (_| | (__| || (_) |  __/ ".center(columns)) 
+    print("     \__|_|\___|\__\__,_|\___|\__\___/ \___| ".center(columns)) 
+    print("                                             ".center(columns)) 
+
+    for rows in grid:
+        print("+---+---+---+")
+        for row in rows:
+            print(row, end='')
+        print()
+    print("+---+---+---+")
+
+def winsituationX():
+    if ((grid[0][1] == "X") and (grid[0][3] == "X") and (grid[0][5] == "X") or 
+    	(grid[1][1] == "X") and (grid[1][3] == "X") and (grid[1][5] == "X") or 
+    	(grid[2][1] == "X") and (grid[2][3] == "X") and (grid[2][5] == "X") or 
+    	(grid[0][1] == "X") and (grid[1][1] == "X") and (grid[2][1] == "X") or
+    	(grid[0][3] == "X") and (grid[1][3] == "X") and (grid[2][3] == "X") or
+    	(grid[0][5] == "X") and (grid[1][5] == "X") and (grid[2][5] == "X") or
+    	(grid[0][1] == "X") and (grid[1][3] == "X") and (grid[2][5] == "X") or
+    	(grid[0][5] == "X") and (grid[1][3] == "X") and (grid[2][1] == "X")): 
+        print("X Win")
+        return True
+        
+def winsituationO():
+    if ((grid[0][1] == "O") and (grid[0][3] == "O") and (grid[0][5] == "O") or
+        (grid[1][1] == "O") and (grid[1][3] == "O") and (grid[1][5] == "O") or
+        (grid[2][1] == "O") and (grid[2][3] == "O") and (grid[2][5] == "O") or
+        (grid[0][1] == "O") and (grid[1][1] == "O") and (grid[2][1] == "O") or
+        (grid[0][3] == "O") and (grid[1][3] == "O") and (grid[2][3] == "O") or
+        (grid[0][5] == "O") and (grid[1][5] == "O") and (grid[2][5] == "O") or
+        (grid[0][1] == "O") and (grid[1][3] == "O") and (grid[2][5] == "O") or
+        (grid[0][5] == "O") and (grid[1][3] == "O") and (grid[2][1] == "O")):
+        print("O Win")
+        return True
+step = 0
+drawGrid(grid)
+
+while step < 9:
+    if step%2 == 0:
+        try:
+            move_x = int(input("X, Your move?"))
+        except ValueError:
+            print("Invalid input")
+        else:
+            if move_x in movelist:
+                print ("This field is already taken.")
+            else:
+                movelist.append(move_x)
+                print (movelist)
+                N = len(grid[0])
+                for i in range(N):
+                    for j in range(0, N-i-1):
+                        if move_x == grid[0][i]:
+                            grid[0][i] = (bcolors.OKBLUE + "X" + bcolors.ENDC)
+                            os.system("clear")
+                            drawGrid(grid)
+                        elif move_x == grid[1][i]:
+                            grid[1][i] = (bcolors.OKBLUE + "X" + bcolors.ENDC)
+                            os.system("clear")
+                            drawGrid(grid)
+                        elif move_x == grid[2][i]:
+                            grid[2][i] = (bcolors.OKBLUE + "X" + bcolors.ENDC)
+                            os.system("clear")
+                            drawGrid(grid)
+                step += 1
+                if winsituationX() == True:
+                    break
+    else:
+        try:
+            move_o = int(input("O, Your move?"))
+        except ValueError:
+            print("Invalid input")
+        else:
+            if move_o in movelist:
+                print ("This field is already taken.")
+            else:
+                movelist.append(move_o)
+                print (movelist)
+                N = len(grid[0])
+                for i in range(N):
+                    for j in range(0, N-i-1):
+                        if move_o == grid[0][i]:
+                            grid[0][i] = (bcolors.OKGREEN + "O" + bcolors.ENDC)
+                            os.system("clear")
+                            drawGrid(grid)
+                        elif move_o == grid[1][i]:
+                            grid[1][i] = (bcolors.OKGREEN + "O" + bcolors.ENDC)
+                            os.system("clear")
+                            drawGrid(grid)
+                        elif move_o == grid[2][i]:
+                            grid[2][i] = (bcolors.OKGREEN + "O" + bcolors.ENDC)
+                            os.system("clear")
+                            drawGrid(grid)
+                step += 1
+                if winsituationO() == True:
+                    break
